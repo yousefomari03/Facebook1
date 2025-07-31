@@ -6,6 +6,7 @@ import com.example.facebook1.model.Post;
 import com.example.facebook1.services.PostServices;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("/post")
@@ -25,6 +26,10 @@ public class PostController {
     public PostResponseDTO findPostById(@PathVariable Long id) {
         return postServices.findPostById(id);
 
+    }
+    @GetMapping("{userId}/userposts")
+    public List<PostResponseDTO> findPostByUserId(@PathVariable Long userId) {
+        return postServices.findPostByUserId(userId);
     }
 
 

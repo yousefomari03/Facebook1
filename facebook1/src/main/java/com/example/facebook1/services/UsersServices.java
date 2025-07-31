@@ -1,7 +1,9 @@
 package com.example.facebook1.services;
 
+import com.example.facebook1.DTOs.PostResponseDTO;
 import com.example.facebook1.DTOs.UsersRequestDTO;
 import com.example.facebook1.DTOs.UsersResponseDTO;
+import com.example.facebook1.model.Post;
 import com.example.facebook1.model.Users;
 import com.example.facebook1.reposetry.UsersReposetry;
 import org.springframework.stereotype.Service;
@@ -60,6 +62,9 @@ public class UsersServices {
         return usersResponseDTO;
 
     }
+
+
+
 }
 
 

@@ -9,9 +9,9 @@ import com.example.facebook1.reposetry.UsersReposetry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
-import static java.awt.SystemColor.text;
 
 @Service
 public class PostServices {
@@ -25,7 +25,7 @@ public class PostServices {
     }
 
     public PostResponseDTO createPost(PostRequestDTO DTO) {
-        Optional <Users> user = usersReposetry.findById(DTO.getUserId());
+        Optional<Users> user = usersReposetry.findById(DTO.getUserId());
         Post post = new Post(DTO.getText());
         post.setUser(user.get());
         postReposetry.save(post);
@@ -45,11 +45,24 @@ public class PostServices {
         return Response;
     }
 
+    public List<PostResponseDTO> findPostByUserId(Long userId) {
+        List<Post> posts = postReposetry.findPostByUserId(userId);
+        List<PostResponseDTO> Response = new ArrayList<>();
+        for(Post post : posts) {
+            PostResponseDTO ResponseDTO = new PostResponseDTO(post);
+            ResponseDTO.setText(post.getText());
+            ResponseDTO.setPostId(post.getPostId());
+            ResponseDTO.setUserId(post.getUser().getId());
+            ResponseDTO.setName(post.getUser().getName());
+            Response.add(ResponseDTO);;
+
+
+        }
+        return Response;
 
 
 
-
-
+    }
 
 
 }
